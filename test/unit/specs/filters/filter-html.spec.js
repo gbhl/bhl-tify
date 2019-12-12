@@ -18,7 +18,7 @@ describe('filter-html', () => {
 
 		const filteredHtml = `
 			${''}
-				<a href="keep tag and attr">
+				<a href="keep tag and attr" target="_top">
 					<b>label</b>
 				</a>
 			${''}

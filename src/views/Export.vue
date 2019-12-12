@@ -7,7 +7,7 @@
 			<ul>
 				<li v-for="page in $root.params.pages" v-if="page">
 					<!-- NOTE: The download attribute is only honored for same-origin URLs -->
-					<a :href="imageUrls[page]" :download="`${page}.jpg`">
+					<a target="_top" :href="imageUrls[page]" :download="`${page}.jpg`">
 						{{ 'Page'|trans }} {{page}}
 						:
 						{{ $root.iiifConvertToArray($root.canvases[page - 1].label)[0] }}
@@ -22,10 +22,10 @@
 				<li v-for="item in $root.manifest.rendering">
 					<template v-if="/\.pdf$/i.test(item['@id'])">
 						<i class="tify-badge" v-if="/\.pdf$/i.test(item['@id'])">PDF</i>
-						<a :href="item['@id']" download>{{ item.label }}</a>
+						<a target="_top" :href="item['@id']" download>{{ item.label }}</a>
 					</template>
 					<template v-else>
-						<a :href="item['@id']">{{ item.label }}</a>
+						<a target="_top" :href="item['@id']">{{ item.label }}</a>
 					</template>
 				</li>
 			</ul>
@@ -50,7 +50,7 @@
 			<h3>{{ 'Literature Management'|trans }}</h3>
 			<ul>
 				<li v-for="item in literatureItems">
-					<a :href="item['@id']" download>
+					<a target="_top" :href="item['@id']" download>
 						{{ item.label }}
 					</a>
 				</li>
@@ -61,12 +61,12 @@
 			<h3>{{ 'Other Formats'|trans }}</h3>
 			<ul>
 				<li>
-					<a :href="$root.manifestUrl" download="manifest.json">
+					<a target="_top" :href="$root.manifestUrl" download="manifest.json">
 						{{ 'IIIF manifest'|trans }}
 					</a>
 				</li>
 				<li v-for="item in otherItems">
-					<a :href="item['@id']" download>
+					<a target="_top" :href="item['@id']" download>
 						{{ item.label || item['@id'] }}
 					</a>
 				</li>

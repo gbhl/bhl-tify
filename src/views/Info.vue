@@ -37,7 +37,7 @@
 			<h3>{{ 'License'|trans }}</h3>
 			<div v-for="item in license">
 				<template v-if="typeof item === 'string'">
-					<a v-if="isUrl(item)" :href="item">
+					<a target="_top" v-if="isUrl(item)" :href="item">
 						{{ item }}
 					</a>
 					<template v-else>
@@ -45,7 +45,7 @@
 					</template>
 				</template>
 				<template v-else :href="item['@id']">
-					<a v-if="isUrl(item['@id'])" :href="item">
+					<a target="_top" v-if="isUrl(item['@id'])" :href="item">
 						{{ item['label'] || item['@id'] }}
 					</a>
 					<template v-else>
@@ -58,10 +58,10 @@
 		<div v-if="related.length" class="tify-info_section -related">
 			<h3>{{ 'Related Resources'|trans }}</h3>
 			<div v-for="item in related">
-				<a v-if="typeof item === 'string'" :href="item">
+				<a target="_top" v-if="typeof item === 'string'" :href="item">
 					{{ item }}
 				</a>
-				<a v-else :href="item['@id']">
+				<a target="_top" v-else :href="item['@id']">
 					{{ item['label'] || item['@id'] }}
 				</a>
 			</div>
@@ -73,7 +73,7 @@
 		</div>
 
 		<div v-if="manifest.logo" class="tify-info_section -logo">
-			<a
+			<a target="_top"
 				v-if="logoId && manifest.logo.service && manifest.logo.service['@id']"
 				:href="manifest.logo.service['@id']"
 			>

@@ -23,6 +23,8 @@ Vue.filter('filterHtml', (html) => {
 			}
 		});
 
+		// Add target="_top" attributes to <a> elements
+		if (tag === 'a') keptAttributes.push('target="_top"');
 		return (keptAttributes.length > 0 ? `<${tag} ${keptAttributes.join(' ')}>` : `<${tag}>`);
 	});
 
