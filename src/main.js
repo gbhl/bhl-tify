@@ -126,7 +126,8 @@ const Tify = new Vue({
 				// Nothing to do here
 			}
 
-			if (process.env.NODE_ENV === 'testing' || (this.isMobile() && !params.view)) {
+			// NOTE: params.view can be an empty string (showing only the scan on large screens)
+			if (this.isMobile() && !params.view) {
 				params.view = 'scan';
 			} else if (typeof params.view === 'undefined') {
 				params.view = 'info';
@@ -203,6 +204,11 @@ const Tify = new Vue({
 			return displayedValues;
 		},
 		isMobile() {
+			// For unit tests
+			if (process.env.NODE_ENV === 'testing' && !this.$root.$el) {
+				return true;
+			}
+
 			// TODO: Update this to work with custom breakpoints
 			return (this.$root.$el.offsetWidth < this.options.breakpoints.medium);
 		},
