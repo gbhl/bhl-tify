@@ -16,7 +16,7 @@
 
 		<div v-if="currentStructureLabel || currentStructureMetadata" class="tify-info_section -metadata -structure">
 			<h3>
-				{{ 'Current Element'|trans }}
+				{{ 'Current Part'|trans }}
 			</h3>
 			<p v-if="currentStructureLabel" class="tify-info_structure">
 				{{ currentStructureLabel }}

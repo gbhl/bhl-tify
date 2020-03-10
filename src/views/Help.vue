@@ -3,8 +3,8 @@
 		<h2 class="tify-sr-only">{{ 'Help'|trans }}</h2>
 
 		<div class="tify-help_section -doc">
-			<h3>{{ 'Documentation'|trans }}</h3>
-			<p><a :href="info.DOCS_URL">{{ 'Open documentation'|trans }}</a></p>
+			<h3>{{ 'FAQ'|trans }}</h3>
+			<p><a :href="info.DOCS_URL">{{ 'Open Frequently Asked Questions'|trans }}</a></p>
 		</div>
 
 		<div class="tify-help_section -about">
@@ -21,9 +21,11 @@
 			<p>
 				<a :href="info.REPOSITORY_URL">{{ 'Source code'|trans }}</a>
 			</p>
+			<!--
 			<p>
 				<a :href="info.BUGS_URL">{{ 'Report a bug'|trans }}</a>
 			</p>
+			-->
 		</div>
 	</section>
 </template>

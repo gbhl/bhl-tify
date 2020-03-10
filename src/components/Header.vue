@@ -98,7 +98,7 @@
 					@click="toggleControlsPopup"
 				>
 					<icon name="menu"/>
-					{{ 'View'|trans }}
+					{{ ''|trans }}
 				</button>
 			</div>
 		</div>
@@ -158,7 +158,7 @@
 					@click="toggleView('export')"
 				>
 					<icon name="file_download"/>
-					{{ 'Export'|trans }}
+					{{ 'Downloads'|trans }}
 				</button>
 
 				<button

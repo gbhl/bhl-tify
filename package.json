@@ -3,6 +3,7 @@
   "version": "0.23.0",
   "description": "TIFY is a slim and mobile-friendly IIIF document viewer.",
   "homepage": "https://github.com/tify-iiif-viewer/tify",
+  "faq": "https://about.biodiversitylibrary.org/help/faq/",
   "repository": {
     "type:": "git",
     "url": "https://github.com/tify-iiif-viewer/tify"

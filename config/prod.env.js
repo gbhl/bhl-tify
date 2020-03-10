@@ -6,7 +6,7 @@ const info = {
 	LICENSE: env.license,
 	REPOSITORY_URL: env.repository.url,
 	BUGS_URL: env.bugs.url,
-	DOCS_URL: `${env.repository.url}/blob/v${env.version}/doc`,
+	DOCS_URL: env.faq,
 };
 
 module.exports = {

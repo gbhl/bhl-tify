@@ -1,6 +1,6 @@
 <template>
 	<section class="tify-export">
-		<h2 class="tify-sr-only">{{ 'Export'|trans }}</h2>
+		<h2 class="tify-sr-only">{{ 'Downloads'|trans }}</h2>
 
 		<div class="tify-export_section -links">
 			<h3>{{ 'Download Individual Images'|trans }}</h3>
