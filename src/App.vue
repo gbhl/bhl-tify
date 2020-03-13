@@ -4,12 +4,14 @@
 			v-if="$root.manifest"
 			:fulltextEnabled="hasOtherContent"
 			:tocEnabled="hasToc"
+			:namesEnabled="hasOtherContent"
 		/>
 
 		<div v-if="$root.manifest" class="tify-app_main">
 			<scan/>
 			<fulltext v-if="hasOtherContent" v-show="$root.params.view === 'fulltext'"/>
 			<toc v-if="hasToc" v-show="$root.params.view === 'toc'"/>
+			<names v-if="hasOtherContent" v-show="$root.params.view ==='names'"/>
 			<thumbnails v-show="$root.params.view === 'thumbnails'"/>
 			<info v-show="$root.params.view === 'info'"/>
 			<export v-show="$root.params.view === 'export'"/>
@@ -37,6 +39,7 @@
 	import AppHeader from '@/components/Header';
 	import Export from '@/views/Export';
 	import Fulltext from '@/views/Fulltext';
+	import Names from '@/views/Names';
 	import Help from '@/views/Help';
 	import Info from '@/views/Info';
 	import Scan from '@/views/Scan';
@@ -53,6 +56,7 @@
 			Thumbnails,
 			Toc,
 			Fulltext,
+			Names,
 		},
 		computed: {
 			hasOtherContent() {

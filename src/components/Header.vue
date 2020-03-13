@@ -144,6 +144,16 @@
 				</button>
 
 				<button
+					v-if="namesEnabled"
+					class="tify-header_button"
+					:class="{ '-active': $root.params.view === 'names' }"
+					@click="toggleView('names')"
+				>
+					<icon name="names"/>
+					{{ 'Scientific Names'|trans}}
+				</button>
+
+				<button
 					class="tify-header_button"
 					:class="{ '-active': $root.params.view === 'info' }"
 					@click="toggleView('info')"
@@ -277,6 +287,7 @@
 		props: [
 			'fulltextEnabled',
 			'tocEnabled',
+			'namesEnabled',
 		],
 		data() {
 			return {
@@ -447,12 +458,15 @@
 					if (this.tocEnabled) this.toggleView('toc');
 					break;
 				case '4':
-					this.toggleView('info');
+					if (this.namesEnabled) this.toggleView('names');
 					break;
 				case '5':
-					this.toggleView('export');
+					this.toggleView('info');
 					break;
 				case '6':
+					this.toggleView('export');
+					break;
+				case '7':
 					this.toggleView('help');
 					break;
 				case 'b':
