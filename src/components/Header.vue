@@ -149,7 +149,7 @@
 					:class="{ '-active': $root.params.view === 'names' }"
 					@click="toggleView('names')"
 				>
-					<icon name="names"/>
+					<icon name="short_text"/>
 					{{ 'Scientific Names'|trans}}
 				</button>
 
