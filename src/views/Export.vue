@@ -3,7 +3,7 @@
 		<h2 class="tify-sr-only">{{ 'Downloads'|trans }}</h2>
 
 		<div class="tify-export_section -links">
-			<h3>{{ 'Download Individual Images'|trans }}</h3>
+			<h3>{{ 'Page Images'|trans }}</h3>
 			<ul>
 				<li v-for="page in $root.params.pages" v-if="page">
 					<!-- NOTE: The download attribute is only honored for same-origin URLs -->
@@ -58,6 +58,14 @@
 		</div>
 
 		<div class="tify-export_section -other">
+			<h3>{{ 'Exports'|trans }}</h3>
+			<ul>
+				<li>
+					<a target="_top" :href="'https://www.mendeley.com/import/?url=https://www.biodiversitylibrary.org/item/' + $root.itemId" download>
+						{{ 'Add Book to your Mendeley Library'|trans }}
+					</a>
+				</li>
+			</ul>
 			<h3>{{ 'Other Formats'|trans }}</h3>
 			<ul>
 				<li>

@@ -53,6 +53,10 @@ if (window.tifyOptions) {
 				throw new Error(`TIFY option "${key}" must be a string (URL) or null`);
 			}
 			break;
+		case 'itemId':
+			if (typeof window.tifyOptions[key] !== 'number' && window.tifyOptions[key] !== null) {
+				throw new Error('TIFY option "${key}" must be a number or null');
+			}
 		default:
 			throw new Error(`Unknown TIFY option: "${key}"`);
 		}
@@ -86,6 +90,7 @@ const options = {
 	init: true,
 	language: 'en',
 	manifest: null,
+	itemId: null,
 	stylesheet: stylesheetUrl,
 	title: 'TIFY',
 	...window.tifyOptions,
@@ -98,6 +103,7 @@ const Tify = new Vue({
 		loading: 0,
 		manifest: null,
 		manifestUrl: '',
+		itemId: 0,
 		messages: null,
 		options,
 		params: {},
@@ -314,6 +320,18 @@ const Tify = new Vue({
 
 		if (this.options.manifest && this.params.manifest) {
 			this.error = 'Setting manifest via query parameter is disabled';
+		}
+
+		this.itemId = this.options.itemId
+			|| this.getQueryParam('itemId');
+
+		if (!this.itemId) {
+			this.error = 'Missing query parameter or option: itemId';
+			return;
+		}
+
+		if (this.options.itemId && this.params.itemId) {
+			this.error = 'Setting itemId via query parameter is disabled';
 		}
 
 		// Set current breakpoint as classes on container element for use in CSS
