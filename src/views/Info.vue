@@ -20,6 +20,11 @@
 			</h3>
 			<p v-if="currentStructureLabel" class="tify-info_structure">
 				{{ currentStructureLabel }}
+				<div>
+					<a target="_top" class="tify-info-mendeleypart" :href="'https://www.mendeley.com/import/?url=' + currentStructure['@id']" download>
+						{{ 'Add Part to your Mendeley Library'|trans }}
+					</a>
+				</div>
 			</p>
 			<metadata-list
 				v-if="currentStructureMetadata"
@@ -52,6 +57,20 @@
 						{{ item['label'] || item['@id'] }}
 					</template>
 				</template>
+			</div>
+		</div>
+
+		<div class="tify-info_section -title">
+			<h3 class="tify-info_heading">{{ 'Links'|trans }}</h3>
+			<div v-for="page in $root.params.pages" class="tify-info_links">
+				<div v-for="md in $root.canvases[page - 1].metadata">
+					<h4>{{ md.label }} - {{ $root.canvases[page - 1].label }}</h4>
+					<div>
+						<a target="_top" :href="md.value">
+							{{ md.value }}
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 

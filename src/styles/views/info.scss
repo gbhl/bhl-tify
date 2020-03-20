@@ -42,3 +42,16 @@
 	@extend %button-small;
 	margin: ($grid / 4) 0 0;
 }
+
+.tify-info-mendeleypart {
+	font-size: 14px;
+}
+
+.tify-info_links {
+	text-transform: capitalize;
+}
+
+.tify-info_links a {
+	text-transform: none;
+	font-size: 14px;
+}
