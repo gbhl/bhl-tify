@@ -9,6 +9,7 @@
 
 		<div v-if="$root.manifest" class="tify-app_main">
 			<scan/>
+			<search v-show="$root.params.view === 'search'"/>
 			<fulltext v-if="hasOtherContent" v-show="$root.params.view === 'fulltext'"/>
 			<toc v-if="hasToc" v-show="$root.params.view === 'toc'"/>
 			<names v-if="hasOtherContent" v-show="$root.params.view ==='names'"/>
@@ -37,6 +38,7 @@
 
 <script>
 	import AppHeader from '@/components/Header';
+	import Search from '@/views/Search';
 	import Export from '@/views/Export';
 	import Fulltext from '@/views/Fulltext';
 	import Names from '@/views/Names';
@@ -57,6 +59,7 @@
 			Toc,
 			Fulltext,
 			Names,
+			Search,
 		},
 		computed: {
 			hasOtherContent() {

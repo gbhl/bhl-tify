@@ -115,6 +115,15 @@
 				</button>
 
 				<button
+					class="tify-header_button"
+					:class="{ '-active': $root.params.view === 'search' }"
+					@click="toggleView('search')"
+				>
+					<icon name="search"/>
+					{{ 'Search'|trans }}
+				</button>
+
+				<button
 					v-if="fulltextEnabled"
 					class="tify-header_button"
 					:class="{ '-active': $root.params.view === 'fulltext' }"
