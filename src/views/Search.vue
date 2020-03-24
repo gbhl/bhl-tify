@@ -10,10 +10,23 @@
         </div>
         <div id="searchResults">
             <div>
-                <div class="sibResultsHeader">Results For:  <span id="sibTextEcho"></span> <span id="sibNumResults"></span></div>
+                <div class="sibResultsHeader">Results For:  <span id="sibTextEcho"></span> <span id="sibNumResults">{{ numResults }}</span></div>
             </div>
             <div class="sibResultsContainer">
+                <div v-html="resultsMsg" class="sibResultsMsg"></div>
                 <div class="sibResultsBox">
+
+    				<template v-for="(result, index) in descriptions">
+                        <div class="sibResultBox">
+                            <div>
+                                <a :href="sequences[index]" class="sibResultPage">{{ result }}</a>
+                            </div>
+                            <template v-for="text in highlights[index]">
+                                <div class="sibResultText" v-html="text" />
+                            </template>
+                        </div>
+                    </template>
+
                 </div>
             </div>
         </div>
@@ -23,6 +36,15 @@
 
 <script>
 export default {
+    data() {
+        return {
+            sequences: [],
+            descriptions: [],
+            highlights: [],
+            resultsMsg: "",
+            numResults: ""
+        }
+    },
     methods: {
         // Check for Enter in Search Inside text box
         checkForEnter: function (event) {
@@ -32,50 +54,49 @@ export default {
 
         // Click binder for search button
         doSearch: function () {
-            var resultsBox = document.getElementsByClassName("sibResultsBox");
+            this.numResults = "";
+            this.sequences = [];
+            this.descriptions = [];
+            this.highlights = [];
             document.getElementById("sibTextEcho").innerHTML = document.getElementById("sibSearchText").value;
 
-            resultsBox.innerHTML = "Loading...";
+            this.resultsMsg = "Loading...";
             document.getElementById("searchResults").style.display = 'block';
-/*
-            $.ajax({
-                type: 'get',
-                url: '/search/pages',
-                data: 'q=' + encodeURIComponent($("#sibSearchText").val()) + '&itemId=' + $root.itemId,
-                success: function (data, textStatus, jqXHR) {
-                    if (data.length > 0) {
-                        $("#sibNumResults").html("(" + data.length + ")");
-                        resultsBox.empty();
-                        $.each(data, function (index, hit) {
 
-                            var resultBox = $("<div/>", { "class": "sibResultBox" });
-                            var resultPageDesc = $("<div/>")
-                                .append($("<a/>", {
-                                    "class": "sibResultPage",
-                                    "href": "javascript:changePage(" + hit.Sequence + ")",
-                                    "text": hit.PageDescription
-                                }));
-                            resultBox.append(resultPageDesc);
-
-                            $.each(hit.Highlights, function (index2, highlight) {
-                                resultBox.append($("<div/>", { "class": "sibResultText" }).append("... " + highlight.Item2 + " ..."));
-                            });
-
-                            resultBox.appendTo(resultsBox);
-                        });
-                    } else {
-                        resultsBox.empty();
-                        resultsBox.append($('<span/>', { 'text': 'No results found' }));
+            this.$http.get('/search/pages', {
+                params: {
+                    q: encodeURIComponent(document.getElementById("sibSearchText").value),
+                    itemId: this.$root.itemId
                     }
-                    resultsBox.removeClass('loading');
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    resultsBox.empty();
-                    resultsBox.append($('<span/>', { 'text': 'Error!  Please try again.' }));
-                    isAnimating = false;
-                }
-            });
-*/
+                })
+                .then((response) => {
+                    if (response.data.length > 0) {
+                        this.numResults = response.data.length;
+                        this.resultsMsg = "";
+                        var seqList = [];
+                        var descList = [];
+                        var hlList = [];
+                        response.data.forEach(function(hit, index) {
+                            seqList.push("javascript:changePage(" + hit.Sequence + ")");
+                            descList.push(hit.PageDescription);
+
+                            hlList.splice(index, 0, []);
+                            hit.Highlights.forEach(function(hl, index2) {
+                                hlList[index].splice(index2, 0, hl.Item2);
+                            });
+                        });
+                        this.sequences = seqList;
+                        this.descriptions = descList;
+                        this.highlights = hlList;
+
+                    } else {
+                        this.resultsMsg = "";
+                        this.resultsMsg = "<span>No results found</span>";
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    this.resultsBox = '<span/>Error!  Please try again.</span>';
+                });
         }
     }    
 }
