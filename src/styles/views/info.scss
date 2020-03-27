@@ -6,6 +6,7 @@
 
 .tify-info_content {
 	position: relative;
+	font-size: 14px;
 
 	&.-collapsed {
 		&::after {
@@ -29,7 +30,7 @@
 
 .tify-info_metadata {
 	> div {
-		margin-bottom: ($grid / 2);
+		margin-bottom: ($grid / 3);
 	}
 }
 

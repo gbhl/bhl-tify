@@ -23,6 +23,7 @@
 	a {
 		color: $link-color;
 		word-wrap: break-word;
+		font-size: 14px;
 	}
 
 	h3 {
@@ -30,7 +31,7 @@
 		font-size: 1.125em;
 		font-weight: normal;
 		padding: 0 0 ($grid * .25 - 1px);
-		margin: 0 0 ($grid * .75);
+		margin: 0 0 ($grid / 3);
 	}
 
 	h4 {

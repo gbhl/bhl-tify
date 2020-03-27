@@ -36,13 +36,16 @@
     font-size: 12px;
     max-height: 450px;
     overflow: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.24);
 }
 
 .sibResultsBox {
     margin: 5px 10px 5px 10px;
     /*border-color: #222F3B;*/
     border-style: solid;
-    border-width: 1px;
+    border-width: 0px;
 }
 
 .sibResultBox {
@@ -59,7 +62,7 @@
 }
 
 .sibResultText b {
-    color: #fcd3a1;
+    color: #bd7200;
 }
 
 .sibBtn {
@@ -75,7 +78,7 @@
     font-family: Arial;
     color: #ffffff;
     font-size: 14px;
-    padding: 2px 3px 2px 3px;
+    padding: 11px 8px 10px 8px;
     text-decoration: none;
 }
 

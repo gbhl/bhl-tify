@@ -19,7 +19,7 @@
     				<template v-for="(result, index) in descriptions">
                         <div class="sibResultBox">
                             <div>
-                                <a :href="sequences[index]" class="sibResultPage">{{ result }}</a>
+                                <a @click="setPage(sequences[index])" class="sibResultPage">{{ result }}</a>
                             </div>
                             <template v-for="text in highlights[index]">
                                 <div class="sibResultText" v-html="text" />
@@ -63,7 +63,7 @@ export default {
             this.resultsMsg = "Loading...";
             document.getElementById("searchResults").style.display = 'block';
 
-            this.$http.get('/search/pages', {
+            this.$http.get('/search/search/pages', {
                 params: {
                     q: encodeURIComponent(document.getElementById("sibSearchText").value),
                     itemId: this.$root.itemId
@@ -77,7 +77,7 @@ export default {
                         var descList = [];
                         var hlList = [];
                         response.data.forEach(function(hit, index) {
-                            seqList.push("javascript:changePage(" + hit.Sequence + ")");
+                            seqList.push(hit.Sequence);
                             descList.push(hit.PageDescription);
 
                             hlList.splice(index, 0, []);
@@ -97,6 +97,10 @@ export default {
                     console.log(error);
                     this.resultsBox = '<span/>Error!  Please try again.</span>';
                 });
+        },
+
+        setPage(page) {
+            this.$root.setPage(page);
         }
     }    
 }
