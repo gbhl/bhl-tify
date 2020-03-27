@@ -63,7 +63,7 @@ export default {
             this.resultsMsg = "Loading...";
             document.getElementById("searchResults").style.display = 'block';
 
-            this.$http.get('/search/search/pages', {
+            this.$http.get('/search/pages', {
                 params: {
                     q: encodeURIComponent(document.getElementById("sibSearchText").value),
                     itemId: this.$root.itemId
