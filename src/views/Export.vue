@@ -66,6 +66,33 @@
 					</a>
 				</li>
 			</ul>
+			<h3>{{ 'Citations'|trans }}</h3>
+			<ul>
+				<li>
+					<a target="_top" :href="'/risdownload/' + $root.itemId" :download="'bhlitem' + $root.itemId + '.ris'">
+						RIS for Book
+					</a>
+				</li>
+				<li>
+					<a target="_top" :href="'/bibtexdownload/' + $root.itemId" :download="'bhlitem' + $root.itemId + '.bib'">
+						BibTeX for Book
+					</a>
+				</li>
+			</ul>
+
+			<ul v-if="currentStructureLabel || currentStructureMetadata">
+				<li>
+					<a target="_top" :href="'/handlers/risdownload.ashx?pid=' + currentStructure['@id'].substring(currentStructure['@id'].lastIndexOf('/') + 1)" :download="'bhlpart' + currentStructure['@id'].substring(currentStructure['@id'].lastIndexOf('/') + 1) + '.ris'">
+						RIS for "{{ currentStructureLabel }}"
+					</a>
+				</li>
+				<li>
+					<a target="_top" :href="'/handlers/bibtexdownload.ashx?pid=' + currentStructure['@id'].substring(currentStructure['@id'].lastIndexOf('/') + 1)" :download="'bhlpart' + currentStructure['@id'].substring(currentStructure['@id'].lastIndexOf('/') + 1) + '.bib'">
+						BibTeX for "{{ currentStructureLabel }}"
+					</a>
+				</li>
+			</ul>
+
 			<h3>{{ 'Other Formats'|trans }}</h3>
 			<ul>
 				<li>
