@@ -58,14 +58,6 @@
 		</div>
 
 		<div class="tify-export_section -other">
-			<h3>{{ 'Exports'|trans }}</h3>
-			<ul>
-				<li>
-					<a target="_top" :href="'https://www.mendeley.com/import/?url=https://www.biodiversitylibrary.org/item/' + $root.itemId" download>
-						{{ 'Add Book to your Mendeley Library'|trans }}
-					</a>
-				</li>
-			</ul>
 			<h3>{{ 'Citations'|trans }}</h3>
 			<ul>
 				<li>
